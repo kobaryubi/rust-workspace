@@ -1,7 +1,6 @@
 services:
   rust:
-    image: rust:1.75
-    working_dir: /usr/src/rust-workspace
+    build: .
     volumes:
       - .:/usr/src/rust-workspace
     tty: true
