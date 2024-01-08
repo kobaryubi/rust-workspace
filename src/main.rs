@@ -8,4 +8,8 @@ fn main() {
 
     let mut writer = BufWriter::new(stdout.lock());
     say(&message, width, &mut writer).unwrap();
+
+    // Hello World
+    println!("Hello World!");
+    println!("I'm a Rustacean!")
 }
