@@ -11,5 +11,5 @@ fn main() {
 
     // Hello World
     println!("Hello World!");
-    println!("I'm a Rustacean!")
+    println!("I'm a Rustacean!");
 }
