@@ -1,17 +1,12 @@
 use crate::garden::vegetables::Asparagus;
-use std::io;
 
-pub mod garden;
+use rust_workspace::server;
+use std::io;
+use std::net::TcpListener;
+
+mod garden;
 
 fn main() {
-    // Hello World
-    println!("Hello World!");
-    println!("I'm a Rustacean!");
-
-    // Guessing Game
-    println!("Guess the number!");
-    println!("Please input your guess.");
-
     // Processing a Guess
     let mut guess = String::new();
 
@@ -38,20 +33,6 @@ fn main() {
         println!("The value of the element at index {index} is: {element}");
     }
 
-    {
-        let x = 5;
-        let y = 10;
-
-        println!("x = {x} and y + 2 = {}", y + 2);
-    }
-
-    {
-        let mut x = 5;
-        println!("The value of x is: {x}");
-        x = 6;
-        println!("The value of x is: {x}");
-    }
-
     // const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 
     // Shadowing
@@ -75,7 +56,6 @@ fn main() {
         println!("{}, {}, {}", tup.0, tup.1, tup.2);
     }
 
-    another_function(5);
     print_labeled_measurement(5, 'h');
 
     {
@@ -84,11 +64,6 @@ fn main() {
             x + 1
         };
         println!("The value of y is: {y}");
-    }
-
-    {
-        let x = five();
-        println!("The value of x is: {x}");
     }
 
     {
@@ -128,15 +103,6 @@ fn main() {
         };
         println!("The result is {result}");
     }
-
-    {
-        let s = String::from("hello");
-        takes_ownership(s);
-
-        let x = 5;
-        makes_copy(x);
-    }
-
     {
         let a = [10, 20, 30, 40, 50];
 
@@ -215,6 +181,15 @@ fn main() {
         let plant = Asparagus {};
         println!("I'm growing {:?}!", plant);
     }
+
+    println!("======== 20. Final Project: Building a Multithreaded Web Server ========");
+    {
+        let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+        for stream in listener.incoming() {
+            let stream = stream.unwrap();
+            server::handle_connection(stream);
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -250,22 +225,6 @@ fn convert_to_fahrenheit(celsius: f32) -> f32 {
 
 fn calculate_length(s: &String) -> usize {
     s.len()
-}
-
-fn takes_ownership(some_string: String) {
-    println!("{}", some_string);
-}
-
-fn makes_copy(some_integer: i32) {
-    println!("{}", some_integer);
-}
-
-fn five() -> i32 {
-    5
-}
-
-fn another_function(x: i32) {
-    println!("The value of x is: {x}");
 }
 
 fn print_labeled_measurement(value: i32, unit_label: char) {
