@@ -1,8 +1,11 @@
 use crate::garden::vegetables::Asparagus;
 
 use rust_workspace::server;
+use rust_workspace::temperature::{convert_to_celsius, convert_to_fahrenheit};
 use std::io;
 use std::net::TcpListener;
+use std::sync::mpsc;
+use std::thread;
 
 mod garden;
 
@@ -34,19 +37,6 @@ fn main() {
     }
 
     // const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
-
-    // Shadowing
-    {
-        let x = 5;
-        let x = x + 1;
-
-        {
-            let x = x + 2;
-            println!("The value of x in the inner scope is: {x}");
-        }
-
-        println!("The value of x is: {x}");
-    }
 
     // The Tuple Type
     {
@@ -182,6 +172,17 @@ fn main() {
         println!("I'm growing {:?}!", plant);
     }
 
+    println!("======== 16. Fearless Concurrency ========");
+    {
+        let (tx, rx) = mpsc::channel();
+        thread::spawn(move || {
+            let val = String::from("hi");
+            tx.send(val).unwrap();
+        });
+        let received = rx.recv().unwrap();
+        println!("Got: {}", received);
+    }
+
     println!("======== 20. Final Project: Building a Multithreaded Web Server ========");
     {
         let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
@@ -213,14 +214,6 @@ impl Rectangle {
             height: size,
         }
     }
-}
-
-fn convert_to_celsius(fahrenheit: f32) -> f32 {
-    (fahrenheit - 32.0) * 5.0 / 9.0
-}
-
-fn convert_to_fahrenheit(celsius: f32) -> f32 {
-    (celsius * 9.0 / 5.0) + 32.0
 }
 
 fn calculate_length(s: &String) -> usize {
