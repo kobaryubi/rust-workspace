@@ -8,4 +8,4 @@ ferris-says = "0.3.1"
 rand = "0.8.5"
 
 [workspace]
-members = ["tokio-workspace"]
+members = [ "concurrency", "smart-pointer","tokio-workspace"]
