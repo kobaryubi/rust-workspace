@@ -174,6 +174,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "concurrency"
+version = "0.1.0"
+
+[[package]]
 name = "core-foundation-sys"
 version = "0.8.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -649,6 +653,10 @@ name = "smallvec"
 version = "1.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4dccd0940a2dcdf68d092b8cbab7dc0ad8fa938bf95787e1b916b0e3d0e8e970"
+
+[[package]]
+name = "smart-pointer"
+version = "0.1.0"
 
 [[package]]
 name = "smawk"
