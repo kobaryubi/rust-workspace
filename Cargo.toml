@@ -8,4 +8,4 @@ ferris-says = "0.3.1"
 rand = "0.8.5"
 
 [workspace]
-members = [ "blog", "concurrency", "tokio-workspace"]
+members = [ "blog", "concurrency", "hello-world", "tokio-workspace"]
