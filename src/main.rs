@@ -1,5 +1,3 @@
-use crate::garden::vegetables::Asparagus;
-
 use rust_workspace::server;
 use rust_workspace::temperature::{convert_to_celsius, convert_to_fahrenheit};
 use std::io;
@@ -107,12 +105,6 @@ fn main() {
     }
 
     {
-        let s1 = String::from("hello");
-        let len = calculate_length(&s1);
-        print!("The length of '{}' is {}.", s1, len)
-    }
-
-    {
         let mut v = Vec::new();
 
         v.push(5);
@@ -166,12 +158,6 @@ fn main() {
         println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
     }
 
-    println!("======== Defining Modules to Control Scope and Privacy ========");
-    {
-        let plant = Asparagus {};
-        println!("I'm growing {:?}!", plant);
-    }
-
     println!("======== 16. Fearless Concurrency ========");
     {
         let (tx, rx) = mpsc::channel();
@@ -214,10 +200,6 @@ impl Rectangle {
             height: size,
         }
     }
-}
-
-fn calculate_length(s: &String) -> usize {
-    s.len()
 }
 
 fn print_labeled_measurement(value: i32, unit_label: char) {
